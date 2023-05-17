@@ -1,4 +1,3 @@
-
 import { SessionProvider } from "../components/SessionProvider";
 import SideBar from "../components/SideBar";
 import { getServerSession } from "next-auth";
@@ -13,11 +12,13 @@ export default async function RootLayout({
 }) {
 
   const session = await getServerSession(authOptions); 
+
+  console.log(session)
    
   return (
     <html>
       <body>
-        {/* <SessionProvider session={session}> */}
+        <SessionProvider session={session}> 
           {!session ? (
             <Login/>
           ) : (
@@ -31,7 +32,7 @@ export default async function RootLayout({
             </div>
           </div>
           )}
-        {/* </SessionProvider> */}
+         </SessionProvider>
         </body>
     </html>
   )
